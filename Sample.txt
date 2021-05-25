@@ -1,0 +1,61 @@
+package Tech;
+import javax.swing.*;  
+import java.awt.*;  
+import java.awt.event.*;  
+import java.lang.Exception;  
+class CreatePage extends JFrame implements ActionListener  
+{   
+	JButton b1;  
+    JPanel newPanel;  
+    JLabel userLabel, passLabel;  
+    final JTextField  textField1, textField2;  
+    CreatePage()  
+    {       
+        userLabel = new JLabel();  
+        userLabel.setText("Login_ID");     
+        textField1 = new JTextField(15); 
+        passLabel = new JLabel();  
+        passLabel.setText("UserName");      
+        textField2 = new JPasswordField(15);
+        b1 = new JButton("LOGIN");  
+        newPanel = new JPanel(new GridLayout(3, 1));  
+        newPanel.add(userLabel);    
+        newPanel.add(textField1);     
+        newPanel.add(passLabel);    
+        newPanel.add(textField2);   
+        newPanel.add(b1);           
+        add(newPanel, BorderLayout.CENTER);    
+        b1.addActionListener(this);    
+        setTitle("LOGIN ");          
+    }   
+    public void actionPerformed(ActionEvent ae)    
+    {  
+        String userValue = textField1.getText();        
+        String passValue = textField2.getText();      
+        if (userValue.equals("test1@gmail.com") && passValue.equals("test")) {  
+            NewPage page = new NewPage();   
+            page.setVisible(true);  
+            JLabel wel_label = new JLabel("Welcome: "+userValue);  
+            page.getContentPane().add(wel_label);  
+        }  
+        else{  
+            System.out.println("Please enter valid username and password");  
+        }  
+    }  
+}  
+class LoginFormDemo  
+{   
+    public static void main(String arg[])  
+    {  
+        try  
+        {  
+            CreatePage p1 = new CreatePage();  
+            p1.setSize(200,100);    
+            p1.setVisible(true);   
+        }  
+        catch(Exception e)  
+        {      
+            JOptionPane.showMessageDialog(null, e.getMessage());  
+        }  
+    }  
+}
